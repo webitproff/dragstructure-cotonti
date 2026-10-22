@@ -7,6 +7,13 @@
 ---
 <img width="1729" height="910" alt="dragstructure-page" src="https://github.com/user-attachments/assets/7ee80ec6-f5de-4960-805e-18cfd899dc5e" />
 <img width="1671" height="941" alt="dragstructure-market" src="https://github.com/user-attachments/assets/62deaffd-0ac2-4f3f-8980-7ac680659ead" />
+<img width="1920" height="1080" alt="dragstructure_plugin_cotonti_by_webitproff_2026-10-22 07 13 25" src="https://github.com/user-attachments/assets/6da2dfee-2a17-4e02-aff8-356be4ae4bfb" />
+<img width="1920" height="1080" alt="dragstructure_plugin_cotonti_by_webitproff_2026-10-22 07 13 25 (2)" src="https://github.com/user-attachments/assets/472e8a60-64f8-4045-846c-178ddb9edb53" />
+<img width="1226" height="855" alt="dragstructure_plugin_cotonti_by_webitproff_2026-10-22 07 13 26" src="https://github.com/user-attachments/assets/f1fe80da-f0eb-46a2-9007-4da0e9219ab3" />
+<img width="1106" height="801" alt="dragstructure_plugin_cotonti_by_webitproff_2026-10-22 07 13 26 (2)" src="https://github.com/user-attachments/assets/d7718da1-7e56-4a07-a991-12f6ecaf8910" />
+<img width="1271" height="893" alt="dragstructure_plugin_cotonti_by_webitproff_2026-10-22 07 13 26 (3)" src="https://github.com/user-attachments/assets/8b9a26b8-e251-4d58-8ed9-0806c585c844" />
+<img width="1334" height="896" alt="dragstructure_plugin_cotonti_by_webitproff_2026-10-22 07 13 26 (4)" src="https://github.com/user-attachments/assets/ee090b89-cc6e-4d78-ae45-6b2eeea357f3" />
+<img width="1242" height="752" alt="dragstructure_plugin_cotonti_by_webitproff_2026-10-22 07 13 26 (5)" src="https://github.com/user-attachments/assets/bab0e39c-7b36-46ad-bea7-965fddfc5460" />
 
 
 ---
