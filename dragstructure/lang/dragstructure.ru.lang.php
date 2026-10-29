@@ -193,9 +193,9 @@
  *
  * ─────────────────────────────────────────────────────────────────────
  *
- * Date: Oct 22, 2026
+ * Date: Oct 29, 2026
  * @package dragstructure
- * @version 2.0.0
+ * @version 2.0.1
  * @author webitproff
  * @copyright Copyright (c) 2026 webitproff | https://github.com/webitproff/dragstructure-cotonti
  * @license BSD
@@ -203,6 +203,13 @@
 
 defined('COT_CODE') or die('Wrong URL.');
 
+$L['cfg_normalize_confirm']      = 'Показать красную кнопку нормализации структуры';
+$L['cfg_normalize_confirm_hint'] = ''
+    . 'Используйте кнопку «Нормализовать пути» только после '
+	. '<a href="https://github.com/webitproff/dbbackdump-cotonti" target="_blank"><strong>создания резервной копии БД</strong></a>. <br>'
+	. 'Эта кнопка сбрасывает и перестроит все категории в «Родительские» (начальные, без иерархии) <br>'
+	. 'После этого иерархию можно расставить заново перетаскиванием.  <br>'
+	. 'Подробнее <a href="https://github.com/webitproff/dragstructure-cotonti" target="_blank"><strong>в документации к плагину</strong></a>';
 
 $L['dragstructure_title']      = 'Drag & Drop структура';
 $L['dragstructure_select_ext'] = 'Расширение';
