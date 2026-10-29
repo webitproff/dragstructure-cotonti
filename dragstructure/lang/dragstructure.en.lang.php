@@ -192,17 +192,24 @@
  *
  * ─────────────────────────────────────────────────────────────────────
  *
- * Date: Oct 22, 2026
+ * Date: Oct 29, 2026
  * @package dragstructure
- * @version 2.0.0
+ * @version 2.0.1
  * @author webitproff
  * @copyright Copyright (c) 2026 webitproff | https://github.com/webitproff/dragstructure-cotonti
  * @license BSD
  */
-
 defined('COT_CODE') or die('Wrong URL.');
 
-
+$L['cfg_normalize_confirm']      = 'Show the red structure normalization button';
+$L['cfg_normalize_confirm_hint'] = ''
+    . 'Use the “Normalize paths” button only after '
+    . '<a href="https://github.com/webitproff/dbbackdump-cotonti" target="_blank"><strong>creating a database backup</strong></a>. <br>'
+    . 'This button resets and rebuilds all categories as “Parent” (root, without hierarchy). <br>'
+    . 'After that, the hierarchy can be re-arranged by dragging. <br>'
+    . 'Learn more <a href="https://github.com/webitproff/dragstructure-cotonti" target="_blank"><strong>in the plugin documentation</strong></a>';
+	
+	
 $L['dragstructure_title']      = 'Drag & Drop Structure';
 $L['dragstructure_select_ext'] = 'Extension';
 $L['dragstructure_no_cats']    = 'Categories not found';
