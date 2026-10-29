@@ -1,10 +1,63 @@
 <?php
+
 /**
  * DragStructure API
- * plugins/dragstructure/inc/dragstructure.functions.php
+ *
+ * Файл: plugins/dragstructure/inc/dragstructure.functions.php
+ *
+ * Публичные функции плагина для работы со структурой области:
+ * чтение категорий, валидация и применение перемещения (drag & drop),
+ * нормализация путей. Логика изменения `structure_path` сосредоточена
+ * здесь; точка входа AJAX (`dragstructure.ajax.php`) и админ-страница
+ * (`dragstructure.tools.php`) вызывают эти функции.
+ *
+ * Область структуры (`$ext`) — код расширения (`page`, `market`,
+ * `forums`, …), совпадающий с полем `structure_area` в таблице
+ * `Cot::$db->structure`.
+ *
+ * Функции
+ * -------
+ *   dragstructure_get_categories($ext)      — плоский список категорий области;
+ *   dragstructure_index_by_id($categories)  — карта [id => категория];
+ *   dragstructure_validate_move(...)        — проверка операции перемещения;
+ *   dragstructure_apply_order(...)          — пересчёт путей перемещаемых узлов;
+ *   dragstructure_move(...)                 — полный сценарий перемещения (транзакция);
+ *   dragstructure_normalize($ext)           — сброс всех путей области в плоский вид.
+ *
+ * Зависимости
+ * -----------
+ *   - Cot::$db->structure   — таблица структуры с префиксом;
+ *   - Cot::$cache           — кеш Cotonti (очищается при перемещении
+ *                             и нормализации, если включён);
+ *   - cot_log()             — системный лог Cotonti (только в move());
+ *   - cot_langfile()        — языковые строки плагина.
+ *
+ * ═════════════════════════════════════════════════════════════════════
+ *   СВЯЗАННЫЕ ССЫЛКИ
+ * ═════════════════════════════════════════════════════════════════════
+ *
+ *   ReadMeMore:       https://abuyfile.com/market/cotonti/plugs/dragstructure
+ *   Support:          https://abuyfile.com/forums/cotonti/custom/
+ *   Source:           https://github.com/webitproff/dragstructure-cotonti
+ *   Cotonti:          https://github.com/Cotonti/Cotonti
+ *
+ * ─────────────────────────────────────────────────────────────────────
+ *
+ * Date: Oct 29, 2026
+ * @package   dragstructure
+ * @version   2.0.1
+ * @author    webitproff
+ * @copyright Copyright (c) 2026 webitproff | https://github.com/webitproff/dragstructure-cotonti
+ * @license   BSD
  */
 
 defined('COT_CODE') or die('Wrong URL');
+
+// Подключает языковые строки плагина (Cot::$L['dragstructure_*']):
+// заголовок страницы, подписи кнопок, сообщения, ключ dragstructure_no_ext и т.д.
+// моя болезнь, вечно туплю с ней
+require_once cot_langfile('dragstructure', 'plug');
+
 
 /* ============================================================
  * dragstructure_get_categories
@@ -45,7 +98,7 @@ defined('COT_CODE') or die('Wrong URL');
  * @see dragstructure_index_by_id()  Индексация результата по id.
  * @see dragstructure_build_tree()   (если используется) для дерева.
  */
-
+ 
 function dragstructure_get_categories(string $ext): array
 {
     if ($ext === '') {
