@@ -168,9 +168,9 @@
 	*   {PHP.L.*}       ← Cot::$L['*'] после require cot_langfile('dragstructure', 'plug')
 	*
 	* Theme:   любая админ-тема Cotonti v1.0.0+
-	* Version: 2.0.0
+	* Version: 2.0.1
 	* Created: 22 Oct 2026
-	* Updated: 22 Oct 2026
+	* Updated: 29 Oct 2026
 	* Copyright (c) 2026 webitproff | https://github.com/webitproff
 	* License: BSD (Free distribution with saving Copyright (c) 2026 webitproff)
 	********************************************************************************/
@@ -180,28 +180,30 @@
 <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
     <h2 class="h3 mb-0">
         <i class="fa-solid fa-sitemap me-2"></i>{PHP.L.dragstructure_title}
-    </h2>
+	</h2>
     <form method="get" action="{FORM_ACTION}" class="d-flex gap-2 align-items-center">
         <input type="hidden" name="m" value="other">
         <input type="hidden" name="p" value="dragstructure">
         <label class="form-label mb-0">{PHP.L.dragstructure_select_ext}:</label>
         {EXT_LIST}
-    </form>
-<div class="mb-3">
-    <a href="{NORMALIZE_URL}"
-       class="btn btn-outline-danger btn-sm"
-       onclick="return confirm('{PHP.L.dragstructure_normalize_confirm}');">
-        <i class="fa-solid fa-broom me-1"></i>{PHP.L.dragstructure_normalize}
-    </a>
-</div>
+	</form>
+	<!-- IF {PHP.cfg.plugin.dragstructure.normalize_confirm} -->
+	<div class="mb-3">
+		<a href="{NORMALIZE_URL}"
+		class="btn btn-outline-danger btn-sm"
+		onclick="return confirm('{PHP.L.dragstructure_normalize_confirm}');">
+			<i class="fa-solid fa-broom me-1"></i>{PHP.L.dragstructure_normalize}
+		</a>
+	</div>
+	<!-- ENDIF -->
 </div>
 
 {FILE "{PHP.cfg.themes_dir}/admin/{PHP.cfg.admintheme}/warnings.tpl"}
 
 <div id="drag-structure"
-     data-ext="{EXT}"
-     data-x="{X_TOKEN}"
-     data-ajax-url="{AJAX_URL}">
+data-ext="{EXT}"
+data-x="{X_TOKEN}"
+data-ajax-url="{AJAX_URL}">
     <div id="category-tree" class="list-group" data-parent-id="0"></div>
     <!-- BEGIN: NO_CATS -->
     <div class="alert alert-info">{PHP.L.dragstructure_no_cats}</div>
@@ -214,125 +216,136 @@
     .category-item.sortable-ghost { opacity: .4; background-color: #e9ecef; }
     .category-item.sortable-chosen { background-color: #f8f9fa; }
     .category-children {
-        min-height: 20px;
-        margin-left: 1.75rem;
-        border-left: 2px dashed #dee2e6;
-        padding: 4px 0 4px .5rem;
+	min-height: 20px;
+	margin-left: 1.75rem;
+	border-left: 2px dashed #dee2e6;
+	padding: 4px 0 4px .5rem;
     }
     .category-handle { cursor: grab; }
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
 <script>
-(function () {
-    const root = document.getElementById('drag-structure');
-    if (!root) return;
-
-    const ext     = root.dataset.ext;
-    const xToken  = root.dataset.x;
-    const ajaxUrl = root.dataset.ajaxUrl;
-    const rootEl  = document.getElementById('category-tree');
-
-    let currentCats = {CATS_JSON};
-
-    function buildByParent(cats) {
-        const byParent = {};
-        cats.forEach(c => {
-            const key = c.parentPath || '';
-            (byParent[key] = byParent[key] || []).push(c);
-        });
-        Object.keys(byParent).forEach(k => {
-            byParent[k].sort((a, b) => a.path.localeCompare(b.path, undefined, { numeric: true }));
-        });
-        return byParent;
-    }
-
-    function buildNode(cat) {
-        const node = document.createElement('div');
-        node.className = 'list-group-item category-item';
-        node.dataset.id = cat.id;
-        node.innerHTML =
+	(function () {
+		const root = document.getElementById('drag-structure');
+		if (!root) return;
+		
+		const ext     = root.dataset.ext;
+		const xToken  = root.dataset.x;
+		const ajaxUrl = root.dataset.ajaxUrl;
+		const rootEl  = document.getElementById('category-tree');
+		
+		let currentCats = {CATS_JSON};
+		
+		function buildByParent(cats) {
+			const byParent = {};
+			cats.forEach(c => {
+				const key = c.parentPath || '';
+				(byParent[key] = byParent[key] || []).push(c);
+			});
+			Object.keys(byParent).forEach(k => {
+				byParent[k].sort((a, b) => a.path.localeCompare(b.path, undefined, { numeric: true }));
+			});
+			return byParent;
+		}
+		
+		function buildNode(cat) {
+			const node = document.createElement('div');
+			node.className = 'list-group-item category-item';
+			node.dataset.id = cat.id;
+			node.innerHTML =
             '<div class="d-flex align-items-center">' +
-                '<i class="fa-solid fa-grip-vertical me-2 text-muted category-handle"></i>' +
-                '<div class="flex-grow-1">' +
-                    '<code class="me-2">' + cat.path + '</code>' +
-                    '<strong>' + cat.code + '</strong> — ' + cat.title +
-                    (cat.desc ? '<div class="small text-muted">' + cat.desc + '</div>' : '') +
-                '</div>' +
+			'<i class="fa-solid fa-grip-vertical me-2 text-muted category-handle"></i>' +
+			'<div class="flex-grow-1">' +
+			'<code class="me-2">' + cat.path + '</code>' +
+			'<strong>' + cat.code + '</strong> — ' + cat.title +
+			(cat.desc ? '<div class="small text-muted">' + cat.desc + '</div>' : '') +
+			'</div>' +
             '</div>' +
             '<div class="category-children" data-parent-id="' + cat.id + '"></div>';
-        return node;
-    }
-
-    function render(cats) {
-        rootEl.innerHTML = '';
-        const byParent = buildByParent(cats);
-        function walk(parentPath, container) {
-            (byParent[parentPath] || []).forEach(cat => {
-                const node = buildNode(cat);
-                container.appendChild(node);
-                walk(cat.path, node.querySelector('.category-children'));
-            });
-        }
-        walk('', rootEl);
-        initSortable(rootEl);
-    }
-
-    function initSortable(el) {
-        new Sortable(el, {
-            group: { name: 'categories', pull: true, put: true },
-            handle: '.category-handle',
-            animation: 200,
-            forceFallback: true,
-            fallbackOnBody: true,
-            swapThreshold: 0.5,
-            emptyInsertThreshold: 5,
-            ghostClass: 'sortable-ghost',
-            chosenClass: 'sortable-chosen',
-            onEnd(evt) {
-                const toEl = evt.to;
-                const parentId = parseInt(toEl.dataset.parentId || '0', 10);
-
-                const order = Array.from(toEl.children)
+			return node;
+		}
+		
+		function render(cats) {
+			rootEl.innerHTML = '';
+			const byParent = buildByParent(cats);
+			function walk(parentPath, container) {
+				(byParent[parentPath] || []).forEach(cat => {
+					const node = buildNode(cat);
+					container.appendChild(node);
+					walk(cat.path, node.querySelector('.category-children'));
+				});
+			}
+			walk('', rootEl);
+			initSortable(rootEl);
+		}
+		
+		function initSortable(el) {
+			new Sortable(el, {
+				group: { name: 'categories', pull: true, put: true },
+				handle: '.category-handle',
+				animation: 200,
+				forceFallback: true,
+				fallbackOnBody: true,
+				swapThreshold: 0.5,
+				emptyInsertThreshold: 5,
+				ghostClass: 'sortable-ghost',
+				chosenClass: 'sortable-chosen',
+				onEnd(evt) {
+					const toEl = evt.to;
+					const parentId = parseInt(toEl.dataset.parentId || '0', 10);
+					
+					const order = Array.from(toEl.children)
                     .filter(n => n.classList.contains('category-item'))
                     .map(n => parseInt(n.dataset.id, 10));
-
-                const body = new URLSearchParams();
-                body.set('x', xToken);
-                body.set('ext', ext);
-                body.set('parent_id', parentId);
-                order.forEach(id => body.append('order[]', id));
-
-                fetch(ajaxUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body
-                })
-                .then(r => r.json())
-                .then(data => {
-                    if (!data.success) {
-                        alert(data.message || 'Error');
-                        location.reload();
-                        return;
-                    }
-                    if (Array.isArray(data.categories)) {
-                        currentCats = data.categories;
-                        render(currentCats);
-                    } else {
-                        location.reload();
-                    }
-                })
-                .catch(err => {
-                    console.error(err);
-                    alert('Network error');
-                    location.reload();
-                });
-            }
-        });
-        el.querySelectorAll(':scope > .category-item > .category-children').forEach(initSortable);
-    }
-
-    render(currentCats);
-})();
+					
+					const body = new URLSearchParams();
+					body.set('x', xToken);
+					body.set('ext', ext);
+					body.set('parent_id', parentId);
+					order.forEach(id => body.append('order[]', id));
+					
+					fetch(ajaxUrl, {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+						body
+					})
+					.then(r => r.json())
+					.then(data => {
+						if (!data.success) {
+							alert(data.message || 'Error');
+							location.reload();
+							return;
+						}
+						if (Array.isArray(data.categories)) {
+							currentCats = data.categories;
+							render(currentCats);
+							} else {
+							location.reload();
+						}
+					})
+					.catch(err => {
+						console.error(err);
+						alert('Network error');
+						location.reload();
+					});
+				}
+			});
+			el.querySelectorAll(':scope > .category-item > .category-children').forEach(initSortable);
+		}
+		
+		render(currentCats);
+	})();
 </script>
+
+<!-- IF {PHP.cfg.debug_mode} AND {PHP.usr.isadmin} -->
+<!-- IF {PHP|function_exists('cot_debug_tpl_url')} -->
+<div class="alert alert-secondary mt-5" role="alert">
+	<div class="fw-semibold mb-2">{PHP.L.cotcp_path_current_tpl}</div>
+	<div class="text-danger fw-semibold">{PHP|cot_debug_tpl_url()}</div>
+</div>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+
 <!-- END: MAIN -->
