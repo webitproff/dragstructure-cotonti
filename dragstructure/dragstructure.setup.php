@@ -5,8 +5,8 @@ Code=dragstructure
 Name=Drag & Drop Structure
 Category=administration
 Description=Drag-and-drop editor for category structure with numeric path recalculation
-Version=2.0.0
-Date=2026-10-22
+Version=2.0.1
+Date=2026-10-29
 Author=webitproff
 Copyright=(c) 2026 webitproff | https://github.com/webitproff/dragstructure-cotonti
 Notes=
@@ -19,7 +19,12 @@ Requires_plugins=
 Recommends_modules=
 Recommends_plugins=
 [END_COT_EXT]
+
+[BEGIN_COT_EXT_CONFIG]
+normalize_confirm=01:radio::0:Show the red structure normalization button
+[END_COT_EXT_CONFIG]
 ==================== */
+
 
 /**
  * Setup & Registration File for the Plugin "Drag & Drop Structure"
@@ -37,7 +42,7 @@ Recommends_plugins=
  *
  * По своей роли это «паспорт» или «свидетельство о рождении»
  * расширения. Всё, что система знает о плагине до его установки,
- * она берёт из блока `[BEGIN_COT_EXT] ... [END_COT_EXT]` в начале
+ * она берёт из блока `BEGIN_COT_EXT ... END_COT_EXT` в начале
  * этого файла. Всё, что система знает о плагине после установки,
  * записано в таблицах БД и было взято оттуда же при установке.
  *
@@ -245,7 +250,7 @@ Recommends_plugins=
  *     ничего не меняется.
  *   - Иначе: старые привязки хуков удаляются из `$db_plugins`
  *     (`cot_plugin_remove`), затем сканируется каталог, читаются
- *     `[BEGIN_COT_EXT]` из каждого файла и хуки регистрируются
+ *     `BEGIN_COT_EXT` из каждого файла и хуки регистрируются
  *     заново с актуальными `Hooks` и `Order`.
  *   - Обновляются только `auth_rights_lock` в `$db_auth` — сами
  *     права (`auth_rights`) не трогаются, чтобы не потерять
@@ -379,9 +384,9 @@ Recommends_plugins=
  *
  * ─────────────────────────────────────────────────────────────────────
  *
- * Date: Oct 22, 2026
+ * Date: Oct 29, 2026
  * @package dragstructure
- * @version 2.0.0
+ * @version 2.0.1
  * @author webitproff
  * @copyright Copyright (c) 2026 webitproff | https://github.com/webitproff/dragstructure-cotonti
  * @license BSD
