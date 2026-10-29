@@ -177,9 +177,10 @@
 -->
 
 <!-- BEGIN: MAIN -->
+<h1 class="mb-3"><i class="fa-solid fa-cube me-1"></i>{EXT_NAME}</h1>
 <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
     <h2 class="h3 mb-0">
-        <i class="fa-solid fa-sitemap me-2"></i>{PHP.L.dragstructure_title}
+        <i class="fa-solid fa-sitemap me-2"></i>{PHP.L.dragstructure_title} 
 	</h2>
     <form method="get" action="{FORM_ACTION}" class="d-flex gap-2 align-items-center">
         <input type="hidden" name="m" value="other">
