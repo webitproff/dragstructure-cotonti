@@ -1,7 +1,7 @@
 <?php
 /**
  * English Localization File for the Plugin "Drag & Drop Structure"
- * for Cotonti CMF v1.+, PHP 8.4+, MySQL 8.4
+ * for Cotonti CMF v1.+, PHP 8.5+, MySQL 8.4
  *
  * ═════════════════════════════════════════════════════════════════════
  *   FILE PURPOSE — PLUGIN LANGUAGE PACK
@@ -192,31 +192,46 @@
  *
  * ─────────────────────────────────────────────────────────────────────
  *
- * Date: Oct 29, 2026
+ * Date: Oct 31, 2026
  * @package dragstructure
- * @version 2.0.1
+ * @version 2.1.1
  * @author webitproff
  * @copyright Copyright (c) 2026 webitproff | https://github.com/webitproff/dragstructure-cotonti
  * @license BSD
  */
 defined('COT_CODE') or die('Wrong URL.');
 
+// ========================
+// PLUGIN INFO (ADMIN)
+// ========================
+$L['info_name']  = 'Drag & Drop structure';
+$L['info_desc']  = 'Visual category editor — simple and intuitive drag-and-drop of categories with the mouse when building a nesting hierarchy.';
+$L['info_notes'] = 'Beginners must read the <strong>documentation <a target="_blank" href="https://github.com/webitproff/dragstructure-cotonti">in README.md</a> from the plugin repository</strong>.';
+
+// ========================
+// TITLES AND DESCRIPTIONS (same values, pulled by other keys)
+// ========================
+$L['dragstructure_title'] = $L['info_name'];
+$L['dragstructure_desc']  = $L['info_desc'];
+$L['dragstructure_name']  = $L['info_name'];
+
+
 $L['cfg_normalize_confirm']      = 'Show the red structure normalization button';
 $L['cfg_normalize_confirm_hint'] = ''
-    . 'Use the “Normalize paths” button only after '
-    . '<a href="https://github.com/webitproff/dbbackdump-cotonti" target="_blank"><strong>creating a database backup</strong></a>. <br>'
-    . 'This button resets and rebuilds all categories as “Parent” (root, without hierarchy). <br>'
-    . 'After that, the hierarchy can be re-arranged by dragging. <br>'
-    . 'Learn more <a href="https://github.com/webitproff/dragstructure-cotonti" target="_blank"><strong>in the plugin documentation</strong></a>';
-	
-	
-$L['dragstructure_title']      = 'Drag & Drop Structure';
+    . 'Use the "Normalize paths" button only after '
+	. '<a href="https://github.com/webitproff/dbbackdump-cotonti" target="_blank"><strong>creating a database backup</strong></a>. <br>'
+	. 'This button resets and rebuilds all categories of the selected extension as "Parent" (initial, without hierarchy). <br>'
+	. 'After that, the hierarchy can be re-arranged by dragging.  <br>'
+	. 'Learn more <a href="https://github.com/webitproff/dragstructure-cotonti" target="_blank"><strong>in the plugin documentation</strong></a>';
+
+
 $L['dragstructure_select_ext'] = 'Extension';
-$L['dragstructure_no_cats']    = 'Categories not found';
+$L['dragstructure_select_ext_hint'] = 'You are currently editing the structure hierarchy of the extension selected in this dropdown. It is worth double-checking that you have not accidentally selected the forum module categories when you intend to edit the structure of the pages and articles module, or vice versa.';
+$L['dragstructure_no_cats']    = 'No categories found';
 $L['dragstructure_no_ext']     = 'No extensions with structure support';
 $L['dragstructure_saved']      = 'Structure saved';
-$L['dragstructure_error']      = 'Error saving structure';
+$L['dragstructure_error']      = 'Failed to save structure';
 
 $L['dragstructure_normalize']    = 'Normalize paths';
-$L['dragstructure_normalize_confirm'] = 'All category paths will be rebuilt into a flat list (100, 110, 120...). All categories will become parent ones. The hierarchy will be lost and can only be restored manually. Continue?';
+$L['dragstructure_normalize_confirm'] = 'All category paths of the current extension will be rebuilt into a flat list (100, 110, 120...). All categories will become parent categories. The hierarchy will be lost and can only be restored manually from a pre-made database backup. Continue?';
 $L['dragstructure_normalized']   = 'Categories normalized: {$count}';
