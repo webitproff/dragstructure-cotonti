@@ -1,7 +1,7 @@
 <?php
 /**
  * Russian Localization File for the Plugin "Drag & Drop Structure"
- * for Cotonti CMF v1.+, PHP 8.4+, MySQL 8.4
+ * for Cotonti CMF v1.+, PHP 8.5+, MySQL 8.4
  *
  * ═════════════════════════════════════════════════════════════════════
  *   НАЗНАЧЕНИЕ ФАЙЛА — ЯЗЫКОВОЙ ПАКЕТ ПЛАГИНА
@@ -193,9 +193,9 @@
  *
  * ─────────────────────────────────────────────────────────────────────
  *
- * Date: Oct 29, 2026
+ * Date: Oct 31, 2026
  * @package dragstructure
- * @version 2.0.1
+ * @version 2.1.1
  * @author webitproff
  * @copyright Copyright (c) 2026 webitproff | https://github.com/webitproff/dragstructure-cotonti
  * @license BSD
@@ -203,21 +203,37 @@
 
 defined('COT_CODE') or die('Wrong URL.');
 
+// ========================
+// ИНФОРМАЦИЯ О ПЛАГИНЕ (АДМИНКА)
+// ========================
+$L['info_name']  = 'Drag & Drop структура';
+$L['info_desc']  = 'Визуальный редактор категорий, простое и наглядное перетаскивание категорий мышкой при построение иерархии вложенности.';
+$L['info_notes'] = 'Новичкам обязательно читать <strong>документацию <a target="_blank" href="https://github.com/webitproff/dragstructure-cotonti">в README.md</a> из репозитория плагина</strong>.';
+
+// ========================
+// TITLES AND DESCRIPTIONS (same values, pulled by other keys)
+// ========================
+$L['dragstructure_title'] = $L['info_name'];
+$L['dragstructure_desc']  = $L['info_desc'];
+$L['dragstructure_name']  = $L['info_name'];
+
+
 $L['cfg_normalize_confirm']      = 'Показать красную кнопку нормализации структуры';
 $L['cfg_normalize_confirm_hint'] = ''
     . 'Используйте кнопку «Нормализовать пути» только после '
 	. '<a href="https://github.com/webitproff/dbbackdump-cotonti" target="_blank"><strong>создания резервной копии БД</strong></a>. <br>'
-	. 'Эта кнопка сбрасывает и перестроит все категории в «Родительские» (начальные, без иерархии) <br>'
+	. 'Эта кнопка сбрасывает и перестроит все категории выбранного расширения в «Родительские» (начальные, без иерархии) <br>'
 	. 'После этого иерархию можно расставить заново перетаскиванием.  <br>'
 	. 'Подробнее <a href="https://github.com/webitproff/dragstructure-cotonti" target="_blank"><strong>в документации к плагину</strong></a>';
 
-$L['dragstructure_title']      = 'Drag & Drop структура';
+
 $L['dragstructure_select_ext'] = 'Расширение';
+$L['dragstructure_select_ext_hint'] = 'Вы сейчас редактируете иерархию структуры выбранного расширения в этом выпадающем списке. Не будет лишним проверить, что вы случайно не выбрали категории модуля форума, когда собираетесь редактировать структуру модуля страниц и статей, или наоборот.';
 $L['dragstructure_no_cats']    = 'Категории не найдены';
 $L['dragstructure_no_ext']     = 'Нет расширений с поддержкой структуры';
 $L['dragstructure_saved']      = 'Структура сохранена';
 $L['dragstructure_error']      = 'Ошибка сохранения структуры';
 
 $L['dragstructure_normalize']    = 'Нормализовать пути';
-$L['dragstructure_normalize_confirm'] = 'Все пути категорий будут перестроены в плоский список (100, 110, 120...). Все категории станут родительскими. Иерархия потеряется, восстановить можно только вручную. Продолжить?';
+$L['dragstructure_normalize_confirm'] = 'Все пути категорий текущего расширения будут перестроены в плоский список (100, 110, 120...). Все категории станут родительскими. Иерархия потеряется, восстановить можно только вручную из заранее сделанной резервной копии базы данных. Продолжить?';
 $L['dragstructure_normalized']   = 'Нормализовано категорий: {$count}';
