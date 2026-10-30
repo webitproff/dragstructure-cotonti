@@ -1,11 +1,11 @@
 # Drag & Drop Structure — Visual Category Editor for Cotonti
 
 > **Extension for Cotonti CMF**
-> Version 2.0.1  
-> Date: Oct 29, 2026  
+> Version 2.1.1  
+> Date: Oct 31, 2026  
 > Author: **[webitproff](https://github.com/webitproff)**  
 > License: BSD  
-> Category: Administration · Compatibility: Cotonti V1  
+> Category: Administration · Compatibility: **Cotonti CMF v1.+**, **PHP 8.5+**, **MySQL 8.4**    
 
 ---
 <img width="1729" height="910" alt="dragstructure-page" src="https://github.com/user-attachments/assets/7ee80ec6-f5de-4960-805e-18cfd899dc5e" />
