@@ -165,9 +165,9 @@ Hooks=tools
  *
  * ─────────────────────────────────────────────────────────────────────
  *
- * Date: Oct 29, 2026
+ * Date: Oct 31, 2026
  * @package dragstructure
- * @version 2.0.1
+ * @version 2.1.1
  * @author webitproff
  * @copyright Copyright (c) 2026 webitproff | https://github.com/webitproff/dragstructure-cotonti
  * @license BSD
