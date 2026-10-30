@@ -168,36 +168,48 @@
 	*   {PHP.L.*}       ← Cot::$L['*'] после require cot_langfile('dragstructure', 'plug')
 	*
 	* Theme:   любая админ-тема Cotonti v1.0.0+
-	* Version: 2.0.1
+	* Version: 2.1.1
 	* Created: 22 Oct 2026
-	* Updated: 29 Oct 2026
+	* Updated: 31 Oct 2026
 	* Copyright (c) 2026 webitproff | https://github.com/webitproff
 	* License: BSD (Free distribution with saving Copyright (c) 2026 webitproff)
 	********************************************************************************/
 -->
 
 <!-- BEGIN: MAIN -->
-<h1 class="mb-3"><i class="fa-solid fa-cube me-1"></i>{EXT_NAME}</h1>
-<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-    <h2 class="h3 mb-0">
-        <i class="fa-solid fa-sitemap me-2"></i>{PHP.L.dragstructure_title} 
-	</h2>
-    <form method="get" action="{FORM_ACTION}" class="d-flex gap-2 align-items-center">
-        <input type="hidden" name="m" value="other">
-        <input type="hidden" name="p" value="dragstructure">
-        <label class="form-label mb-0">{PHP.L.dragstructure_select_ext}:</label>
-        {EXT_LIST}
-	</form>
-	<!-- IF {PHP.cfg.plugin.dragstructure.normalize_confirm} -->
-	<div class="mb-3">
-		<a href="{NORMALIZE_URL}"
-		class="btn btn-outline-danger btn-sm"
-		onclick="return confirm('{PHP.L.dragstructure_normalize_confirm}');">
-			<i class="fa-solid fa-broom me-1"></i>{PHP.L.dragstructure_normalize}
-		</a>
+<h1 class="mb-3"><span class="text-danger fw-bold">{EXT_NAME}</span><i class="fa-solid fa-sitemap mx-2"></i> {PHP.L.dragstructure_title}</h1>
+<div class="alert alert-info" role="alert">
+	<div class="px-2 pb-2">
+		<h5 class="mb-2">
+			<i class="fa-solid fa-land-mine-on fa-xl text-danger"></i>
+		</h5>
+		<hr class="my-3">
+		<p class="mb-0">{PHP.L.dragstructure_select_ext_hint}</p>
 	</div>
-	<!-- ENDIF -->
 </div>
+<div class="card card-body border-danger mb-4 ">
+	<div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+		<form method="get" action="{FORM_ACTION}" class="d-flex gap-2 align-items-center">
+			<input type="hidden" name="m" value="other">
+			<input type="hidden" name="p" value="dragstructure">
+			<label class="form-label mb-0">{PHP.L.dragstructure_select_ext}:</label>
+			{EXT_LIST}
+		</form>
+	</div>
+</div>
+<!-- IF {PHP.cfg.plugin.dragstructure.normalize_confirm} -->
+<div class="my-5 p-3 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
+	<p class="mb-0"><i class="fa-regular fa-floppy-disk fa-2xl text-body m-3"></i>{PHP.L.cfg_normalize_confirm_hint}</p>
+	<hr class="my-3">
+	<p class="mb-0"><i class="fa-solid fa-group-arrows-rotate fa-2xl text-body m-3"></i>{PHP.L.dragstructure_normalize_confirm}</p>
+	<hr class="my-3">
+	<a href="{NORMALIZE_URL}"
+	class="btn btn-danger btn-lg"
+	onclick="return confirm('{PHP.L.dragstructure_normalize_confirm}');">
+		<i class="fa-solid fa-broom me-1"></i>{PHP.L.dragstructure_normalize}
+	</a>
+</div>
+<!-- ENDIF -->
 
 {FILE "{PHP.cfg.themes_dir}/admin/{PHP.cfg.admintheme}/warnings.tpl"}
 
