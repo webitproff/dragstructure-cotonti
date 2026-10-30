@@ -24,7 +24,7 @@ Hooks=ajax
  *
  * Регистрация
  * -----------
- * Хук `ajax` в блоке `[BEGIN_COT_EXT]`. Cotonti находит этот файл по
+ * Хук `ajax` в блоке `BEGIN_COT_EXT`. Cotonti находит этот файл по
  * коду плагина из параметра `r=` в URL и подключает через `include` в
  * system/plug.php. Хук `ajax` не подключает шапку, подвал и прочие
  * элементы страницы — только выполняет код файла.
@@ -141,11 +141,24 @@ Hooks=ajax
  *     dragstructure_validate_move() вернёт `Category #N not found`,
  *     и фронтенд перерисует дерево по `data.categories` после рефреша.
  *
- * @package   dragstructure
- * @version   2.0.0
- * @author    webitproff
- * @copyright (c) 2026 webitproff
- * @license   BSD
+ *
+ * ═════════════════════════════════════════════════════════════════════
+ *   СВЯЗАННЫЕ ССЫЛКИ
+ * ═════════════════════════════════════════════════════════════════════
+ *
+ *   ReadMeMore:       https://abuyfile.com/market/cotonti/plugs/dragstructure
+ *   Support:          https://abuyfile.com/forums/cotonti/custom/
+ *   Source:           https://github.com/webitproff/dragstructure-cotonti
+ *   Cotonti:          https://github.com/Cotonti/Cotonti
+ *
+ * ─────────────────────────────────────────────────────────────────────
+ *
+ * Date: Oct 31, 2026
+ * @package dragstructure
+ * @version 2.1.1
+ * @author webitproff
+ * @copyright Copyright (c) 2026 webitproff | https://github.com/webitproff/dragstructure-cotonti
+ * @license BSD
  */
 
 defined('COT_CODE') or die('Wrong URL.');
