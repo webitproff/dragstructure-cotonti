@@ -5,8 +5,8 @@ Code=dragstructure
 Name=Drag & Drop Structure
 Category=administration
 Description=Drag-and-drop editor for category structure with numeric path recalculation
-Version=2.0.1
-Date=2026-10-29
+Version=2.1.1
+Date=2026-10-31
 Author=webitproff
 Copyright=(c) 2026 webitproff | https://github.com/webitproff/dragstructure-cotonti
 Notes=
@@ -28,7 +28,7 @@ normalize_confirm=01:radio::0:Show the red structure normalization button
 
 /**
  * Setup & Registration File for the Plugin "Drag & Drop Structure"
- * for Cotonti CMF v1.+, PHP 8.4+, MySQL 8.4
+ * for Cotonti CMF v1.+, PHP 8.5+, MySQL 8.4
  *
  * ═════════════════════════════════════════════════════════════════════
  *   НАЗНАЧЕНИЕ ФАЙЛА — ПАСПОРТ ПЛАГИНА
@@ -51,8 +51,8 @@ normalize_confirm=01:radio::0:Show the red structure normalization button
  * ═════════════════════════════════════════════════════════════════════
  *
  * Файл читается ядром Cotonti через функцию `cot_infoget()`
- * (system/extensions.php). Она находит маркеры `[BEGIN_COT_EXT]`
- * и `[END_COT_EXT]` в первых 32 КБ файла, разбирает содержимое
+ * (system/extensions.php). Она находит маркеры `BEGIN_COT_EXT`
+ * и `END_COT_EXT` в первых 32 КБ файла, разбирает содержимое
  * как `Key = Value` и возвращает ассоциативный массив.
  *
  * Точки чтения файла в ядре:
@@ -291,7 +291,7 @@ normalize_confirm=01:radio::0:Show the red structure normalization button
  *   хук-файл, а метаданные. Хук-файлы плагина — это
  *   `dragstructure.tools.php` (хук `tools`) и
  *   `dragstructure.ajax.php` (хук `ajax`). Каждый из них имеет
- *   свой собственный маленький блок `[BEGIN_COT_EXT]`, где
+ *   свой собственный маленький блок `BEGIN_COT_EXT`, где
  *   указано поле `Hooks=...`.
  *
  * ═════════════════════════════════════════════════════════════════════
@@ -384,9 +384,9 @@ normalize_confirm=01:radio::0:Show the red structure normalization button
  *
  * ─────────────────────────────────────────────────────────────────────
  *
- * Date: Oct 29, 2026
+ * Date: Oct 31, 2026
  * @package dragstructure
- * @version 2.0.1
+ * @version 2.1.1
  * @author webitproff
  * @copyright Copyright (c) 2026 webitproff | https://github.com/webitproff/dragstructure-cotonti
  * @license BSD
